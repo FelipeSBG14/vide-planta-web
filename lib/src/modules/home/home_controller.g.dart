@@ -61,6 +61,60 @@ mixin _$HomeController on HomeControllerBase, Store {
     });
   }
 
+  late final _$_plantsListAtom =
+      Atom(name: 'HomeControllerBase._plantsList', context: context);
+
+  List<PlantsModel>? get plantsList {
+    _$_plantsListAtom.reportRead();
+    return super._plantsList;
+  }
+
+  @override
+  List<PlantsModel>? get _plantsList => plantsList;
+
+  @override
+  set _plantsList(List<PlantsModel>? value) {
+    _$_plantsListAtom.reportWrite(value, super._plantsList, () {
+      super._plantsList = value;
+    });
+  }
+
+  late final _$_plantsSearchAtom =
+      Atom(name: 'HomeControllerBase._plantsSearch', context: context);
+
+  List<PlantsModel>? get plantsSearch {
+    _$_plantsSearchAtom.reportRead();
+    return super._plantsSearch;
+  }
+
+  @override
+  List<PlantsModel>? get _plantsSearch => plantsSearch;
+
+  @override
+  set _plantsSearch(List<PlantsModel>? value) {
+    _$_plantsSearchAtom.reportWrite(value, super._plantsSearch, () {
+      super._plantsSearch = value;
+    });
+  }
+
+  late final _$_filterNameAtom =
+      Atom(name: 'HomeControllerBase._filterName', context: context);
+
+  String? get filterName {
+    _$_filterNameAtom.reportRead();
+    return super._filterName;
+  }
+
+  @override
+  String? get _filterName => filterName;
+
+  @override
+  set _filterName(String? value) {
+    _$_filterNameAtom.reportWrite(value, super._filterName, () {
+      super._filterName = value;
+    });
+  }
+
   late final _$_imagePath2Atom =
       Atom(name: 'HomeControllerBase._imagePath2', context: context);
 
@@ -76,6 +130,24 @@ mixin _$HomeController on HomeControllerBase, Store {
   set _imagePath2(String? value) {
     _$_imagePath2Atom.reportWrite(value, super._imagePath2, () {
       super._imagePath2 = value;
+    });
+  }
+
+  late final _$_plantSelectedAtom =
+      Atom(name: 'HomeControllerBase._plantSelected', context: context);
+
+  PlantsModel? get plantSelected {
+    _$_plantSelectedAtom.reportRead();
+    return super._plantSelected;
+  }
+
+  @override
+  PlantsModel? get _plantSelected => plantSelected;
+
+  @override
+  set _plantSelected(PlantsModel? value) {
+    _$_plantSelectedAtom.reportWrite(value, super._plantSelected, () {
+      super._plantSelected = value;
     });
   }
 
@@ -95,6 +167,22 @@ mixin _$HomeController on HomeControllerBase, Store {
     _$_errorMessageAtom.reportWrite(value, super._errorMessage, () {
       super._errorMessage = value;
     });
+  }
+
+  late final _$findAllPlantsAsyncAction =
+      AsyncAction('HomeControllerBase.findAllPlants', context: context);
+
+  @override
+  Future<void> findAllPlants() {
+    return _$findAllPlantsAsyncAction.run(() => super.findAllPlants());
+  }
+
+  late final _$editProductAsyncAction =
+      AsyncAction('HomeControllerBase.editProduct', context: context);
+
+  @override
+  Future<void> editProduct(PlantsModel plantsModel) {
+    return _$editProductAsyncAction.run(() => super.editProduct(plantsModel));
   }
 
   late final _$addPlantAsyncAction =
@@ -165,12 +253,43 @@ mixin _$HomeController on HomeControllerBase, Store {
         .run(() => super.uploadImagePlant2(image, imageName));
   }
 
+  late final _$changeImagesAsyncAction =
+      AsyncAction('HomeControllerBase.changeImages', context: context);
+
+  @override
+  Future<void> changeImages(dynamic image1, dynamic image2) {
+    return _$changeImagesAsyncAction
+        .run(() => super.changeImages(image1, image2));
+  }
+
   late final _$clearPathsAsyncAction =
       AsyncAction('HomeControllerBase.clearPaths', context: context);
 
   @override
   Future<void> clearPaths() {
     return _$clearPathsAsyncAction.run(() => super.clearPaths());
+  }
+
+  late final _$plantDeleteAsyncAction =
+      AsyncAction('HomeControllerBase.plantDelete', context: context);
+
+  @override
+  Future<void> plantDelete(dynamic id) {
+    return _$plantDeleteAsyncAction.run(() => super.plantDelete(id));
+  }
+
+  late final _$HomeControllerBaseActionController =
+      ActionController(name: 'HomeControllerBase', context: context);
+
+  @override
+  void filterByName(String name) {
+    final _$actionInfo = _$HomeControllerBaseActionController.startAction(
+        name: 'HomeControllerBase.filterByName');
+    try {
+      return super.filterByName(name);
+    } finally {
+      _$HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override

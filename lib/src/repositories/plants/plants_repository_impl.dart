@@ -16,31 +16,52 @@ class PlantsRepositoryImpl implements PlantsRepository {
   String baseUrl = Env.instance.get('backend_base_url');
   @override
   Future<List<PlantsModel>> getPlants(String? name) async {
-    throw UnimplementedError();
-    // try {
-    //   final List<PlantsModel> _PlantsList = [];
-    //   final response = await _dio.get(
-    //     '$baseUrl/Plants.json',
-    //   );
-    //   final Map<String, dynamic>? data = response.data;
-    //   if (data != null) {
-    //     data.forEach(
-    //       (playerId, playerData) {
-    //         _PlantsList.add(
-    //           PlantsModel(
-    //             id: playerId,
-    //             name: playerData['name'],
-    //             coins: playerData['coins'],
-    //           ),
-    //         );
-    //       },
-    //     );
-    //   }
-    //   return _PlantsList;
-    // } catch (e, s) {
-    //   log('Não deu para buscar os jogadores', error: e, stackTrace: s);
-    //   throw RepositoryException(message: 'Erro ao buscar jogadores');
-    // }
+    try {
+      final PlantsModel plant;
+      final List<PlantsModel> _plantsList = [];
+      final response = await _dio.get(
+        '$baseUrl/Plants.json',
+      );
+
+      if (response.data != null) {
+        response.data.forEach(
+          (plantId, plantData) {
+            _plantsList.add(
+              PlantsModel(
+                id: plantId,
+                popularName: plantData['popularName'],
+                popularNomenclature: plantData['popularNomenclature'],
+                cientificName: plantData['cientificName'],
+                image1: plantData['image1'],
+                image2: plantData['image2'],
+                imageFont1: plantData['imageFont1'],
+                imageFont2: plantData['imageFont2'],
+                family: plantData['family'],
+                vegetalOrgan: plantData['vegetalOrgan'],
+                terapeuticIndication: plantData['terapeuticIndication'],
+                contradictions: plantData['contradictions'],
+                precautions: plantData['precautions'],
+                medicInterations: plantData['medicInterations'],
+                teaPrepare: plantData['teaPrepare'],
+                farmaceuticForms: plantData['farmaceuticForms'],
+                utilizationTime: plantData['utilizationTime'],
+                superDose: plantData['superDose'],
+                toxicologic: plantData['toxicologic'],
+                extractionMethod: plantData['extractionMethod'],
+                finalObservation: plantData['finalObservation'],
+              ),
+            );
+          },
+        );
+      }
+      return _plantsList;
+    } on DioException catch (e, s) {
+      log('Erro ao buscar plantas');
+      throw RepositoryException(message: 'Erro ao buscar plantas');
+    } catch (e, s) {
+      log('Não deu para buscar os jogadores', error: e, stackTrace: s);
+      throw RepositoryException(message: 'Erro ao buscar plantas');
+    }
   }
 
   @override
@@ -69,6 +90,30 @@ class PlantsRepositoryImpl implements PlantsRepository {
   ) async {
     try {
       PlantsModel plant = PlantsModel(
+        popularName: popularName,
+        popularNomenclature: popularNomenclature,
+        cientificName: cientificName,
+        image1: image1,
+        image2: image2,
+        imageFont1: imageFont1,
+        imageFont2: imageFont2,
+        family: family,
+        vegetalOrgan: vegetalOrgan,
+        terapeuticIndication: terapeuticIndication,
+        contradictions: contradictions,
+        precautions: precautions,
+        medicInterations: medicInteration,
+        teaPrepare: teaPrepare,
+        farmaceuticForms: farmaceuticForms,
+        utilizationTime: utilizationTime,
+        superDose: superDose,
+        toxicologic: toxicologic,
+        extractionMethod: extractionMethod,
+        finalObservation: finalObservation,
+      );
+      if (id == null) {
+        plant = PlantsModel(
+          id: math.Random().nextDouble().toString(),
           popularName: popularName,
           popularNomenclature: popularNomenclature,
           cientificName: cientificName,
@@ -88,30 +133,8 @@ class PlantsRepositoryImpl implements PlantsRepository {
           superDose: superDose,
           toxicologic: toxicologic,
           extractionMethod: extractionMethod,
-          finalObservation: finalObservation);
-      if (id == null) {
-        plant = PlantsModel(
-            id: math.Random().nextDouble().toString(),
-            popularName: popularName,
-            popularNomenclature: popularNomenclature,
-            cientificName: cientificName,
-            image1: image1,
-            image2: image2,
-            imageFont1: imageFont1,
-            imageFont2: imageFont2,
-            family: family,
-            vegetalOrgan: vegetalOrgan,
-            terapeuticIndication: terapeuticIndication,
-            contradictions: contradictions,
-            precautions: precautions,
-            medicInterations: medicInteration,
-            teaPrepare: teaPrepare,
-            farmaceuticForms: farmaceuticForms,
-            utilizationTime: utilizationTime,
-            superDose: superDose,
-            toxicologic: toxicologic,
-            extractionMethod: extractionMethod,
-            finalObservation: finalObservation);
+          finalObservation: finalObservation,
+        );
       } else {
         plant = PlantsModel(
           id: id,
