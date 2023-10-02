@@ -17,7 +17,6 @@ class PlantsRepositoryImpl implements PlantsRepository {
   @override
   Future<List<PlantsModel>> getPlants(String? name) async {
     try {
-      final PlantsModel plant;
       final List<PlantsModel> _plantsList = [];
       final response = await _dio.get(
         '$baseUrl/Plants.json',
@@ -56,7 +55,7 @@ class PlantsRepositoryImpl implements PlantsRepository {
       }
       return _plantsList;
     } on DioException catch (e, s) {
-      log('Erro ao buscar plantas');
+      log('Erro ao buscar plantas', error: e, stackTrace: s);
       throw RepositoryException(message: 'Erro ao buscar plantas');
     } catch (e, s) {
       log('Não deu para buscar os jogadores', error: e, stackTrace: s);

@@ -2,7 +2,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'modules/core/core_module.dart';
 import 'modules/home/home_module.dart';
 import 'modules/listPlants/list_plants_module.dart';
-import 'modules/listPlants/list_plants_page.dart';
 
 class AppModule extends Module {
   @override

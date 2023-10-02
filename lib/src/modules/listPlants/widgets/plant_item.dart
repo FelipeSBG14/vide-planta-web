@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import '../../../../main.dart';
 import '../../../core/ui/styles/text_styles.dart';
 import '../../../models/plants_model.dart';
 import 'delete_modal.dart';
