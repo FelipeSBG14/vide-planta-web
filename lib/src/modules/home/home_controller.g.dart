@@ -190,31 +190,29 @@ mixin _$HomeController on HomeControllerBase, Store {
 
   @override
   Future<void> addPlant(
-      dynamic id,
-      dynamic popularName,
-      dynamic popularNomenclature,
-      dynamic cientificName,
-      dynamic image1,
-      dynamic image2,
-      dynamic imageFont1,
-      dynamic imageFont2,
-      dynamic family,
-      dynamic vegetalOrgan,
-      dynamic terapeuticIndication,
-      dynamic contradictions,
-      dynamic precautions,
-      dynamic medicInteration,
-      dynamic teaPrepare,
-      dynamic farmaceuticForms,
-      dynamic utilizationTime,
-      dynamic superDose,
-      dynamic toxicologic,
-      dynamic extractionMethod,
-      dynamic finalObservation) {
-    return _$addPlantAsyncAction.run(() => super.addPlant(
+    dynamic id,
+    dynamic popularName,
+    dynamic cientificName,
+    dynamic image1,
+    dynamic image2,
+    dynamic imageFont1,
+    dynamic imageFont2,
+    dynamic family,
+    dynamic vegetalOrgan,
+    dynamic terapeuticIndication,
+    dynamic contradictionsandprecautions,
+    dynamic medicInteration,
+    dynamic farmaceuticForms,
+    dynamic utilizationTime,
+    dynamic superDose,
+    dynamic toxicologic,
+    dynamic extractionMethodAndPrepare,
+    dynamic finalObservation,
+  ) {
+    return _$addPlantAsyncAction.run(
+      () => super.addPlant(
         id,
         popularName,
-        popularNomenclature,
         cientificName,
         image1,
         image2,
@@ -223,16 +221,16 @@ mixin _$HomeController on HomeControllerBase, Store {
         family,
         vegetalOrgan,
         terapeuticIndication,
-        contradictions,
-        precautions,
+        contradictionsandprecautions,
         medicInteration,
-        teaPrepare,
         farmaceuticForms,
         utilizationTime,
         superDose,
         toxicologic,
-        extractionMethod,
-        finalObservation));
+        extractionMethodAndPrepare,
+        finalObservation,
+      ),
+    );
   }
 
   late final _$uploadImagePlant1AsyncAction =
@@ -284,7 +282,8 @@ mixin _$HomeController on HomeControllerBase, Store {
   @override
   void filterByName(String name) {
     final _$actionInfo = _$HomeControllerBaseActionController.startAction(
-        name: 'HomeControllerBase.filterByName');
+      name: 'HomeControllerBase.filterByName',
+    );
     try {
       return super.filterByName(name);
     } finally {

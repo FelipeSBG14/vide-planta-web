@@ -20,22 +20,21 @@ class HomePage extends StatefulWidget {
 final controller = Modular.get<HomeController>();
 
 final popularNameEC = TextEditingController();
-final popularNomenclatureEC = TextEditingController();
+
 final cientificNameEC = TextEditingController();
 final imageFont1EC = TextEditingController();
 final imageFont2EC = TextEditingController();
 final familyEC = TextEditingController();
 final vegetalOrganEC = TextEditingController();
 final terapeuticIndicationEC = TextEditingController();
-final contradictionsEC = TextEditingController();
-final precautionsEC = TextEditingController();
+final contradictionsandprecautionsEC = TextEditingController();
 final medicInterationsEC = TextEditingController();
-final teaPrepareEC = TextEditingController();
+
 final farmaceuticFormsEC = TextEditingController();
 final utilizationTimeEC = TextEditingController();
 final superDoseEC = TextEditingController();
 final toxicologicEC = TextEditingController();
-final extractionMethodEC = TextEditingController();
+final extractionMethodAndPrepareEC = TextEditingController();
 final finalObservationEC = TextEditingController();
 final _formKey = GlobalKey<FormState>();
 
@@ -62,15 +61,14 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
           familyEC.clear();
           vegetalOrganEC.clear();
           terapeuticIndicationEC.clear();
-          contradictionsEC.clear();
-          precautionsEC.clear();
-          teaPrepareEC.clear();
+          contradictionsandprecautionsEC.clear();
+
           farmaceuticFormsEC.clear();
           utilizationTimeEC.clear();
           superDoseEC.clear();
-          extractionMethodEC.clear();
+          extractionMethodAndPrepareEC.clear();
           finalObservationEC.clear();
-          popularNomenclatureEC.clear();
+
           medicInterationsEC.clear();
           toxicologicEC.clear();
           controller.clearPaths();
@@ -100,15 +98,13 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
     familyEC.dispose();
     vegetalOrganEC.dispose();
     terapeuticIndicationEC.dispose();
-    contradictionsEC.dispose();
-    precautionsEC.dispose();
-    teaPrepareEC.dispose();
+    contradictionsandprecautionsEC.dispose();
+
     farmaceuticFormsEC.dispose();
     utilizationTimeEC.dispose();
     superDoseEC.dispose();
-    extractionMethodEC.dispose();
+    extractionMethodAndPrepareEC.dispose();
     finalObservationEC.dispose();
-    popularNomenclatureEC.dispose();
     medicInterationsEC.dispose();
     toxicologicEC.dispose();
     super.dispose();
@@ -125,7 +121,6 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
           await controller.addPlant(
             null,
             popularNameEC.text,
-            popularNomenclatureEC.text,
             cientificNameEC.text,
             controller.imagePath1,
             controller.imagePath2,
@@ -134,15 +129,13 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
             familyEC.text,
             vegetalOrganEC.text,
             terapeuticIndicationEC.text,
-            contradictionsEC.text,
-            precautionsEC.text,
+            contradictionsandprecautionsEC.text,
             medicInterationsEC.text,
-            teaPrepareEC.text,
             farmaceuticFormsEC.text,
             utilizationTimeEC.text,
             superDoseEC.text,
             toxicologicEC.text,
-            extractionMethodEC.text,
+            extractionMethodAndPrepareEC.text,
             finalObservationEC.text,
           );
         }
@@ -204,22 +197,6 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
                       ),
                       validator:
                           Validatorless.required('Nome Popular é obrigatório'),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    child: TextFormField(
-                      controller: popularNomenclatureEC,
-                      decoration: const InputDecoration(
-                        isDense: true,
-                        labelText: 'Nomenclaturas Populares',
-                      ),
-                      validator: Validatorless.required(
-                        'Informe Nomenclaturas Populares',
-                      ),
                     ),
                   ),
                   const SizedBox(
@@ -433,11 +410,11 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.6,
                     child: TextFormField(
-                      controller: contradictionsEC,
+                      controller: contradictionsandprecautionsEC,
                       decoration: const InputDecoration(
                         isDense: false,
                         label: Text(
-                          'Contradições',
+                          'Contradicações/Advertências',
                         ),
                         hintText: 'Descreva',
                         alignLabelWithHint: true,
@@ -447,28 +424,6 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
                       keyboardType: TextInputType.multiline,
                       validator:
                           Validatorless.required('Coloque as contradições'),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    child: TextFormField(
-                      controller: precautionsEC,
-                      decoration: const InputDecoration(
-                        isDense: false,
-                        label: Text(
-                          'Precauções de Uso',
-                        ),
-                        hintText: 'Descreva',
-                        alignLabelWithHint: true,
-                      ),
-                      maxLines: 5,
-                      minLines: null,
-                      keyboardType: TextInputType.multiline,
-                      validator:
-                          Validatorless.required('Coloque as precauções'),
                     ),
                   ),
                   const SizedBox(
@@ -487,27 +442,6 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
                       maxLines: 5,
                       minLines: null,
                       keyboardType: TextInputType.multiline,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    child: TextFormField(
-                      controller: teaPrepareEC,
-                      decoration: const InputDecoration(
-                        isDense: false,
-                        label: Text(
-                          'Preparo do Chá',
-                        ),
-                        hintText: 'Descreva',
-                        alignLabelWithHint: true,
-                      ),
-                      maxLines: 5,
-                      minLines: null,
-                      keyboardType: TextInputType.multiline,
-                      validator: Validatorless.required('Coloque o preparo'),
                     ),
                   ),
                   const SizedBox(
@@ -601,11 +535,11 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.6,
                     child: TextFormField(
-                      controller: extractionMethodEC,
+                      controller: extractionMethodAndPrepareEC,
                       decoration: const InputDecoration(
                         isDense: false,
                         label: Text(
-                          'Método de Extração Corretos',
+                          'Método de Extração/Preparo do Chá',
                         ),
                         hintText: 'Descreva',
                         alignLabelWithHint: true,

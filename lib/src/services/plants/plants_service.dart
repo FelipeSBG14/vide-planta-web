@@ -6,7 +6,6 @@ abstract class PlantsService {
   Future<void> addOrEditPlants(
     id,
     popularName,
-    popularNomenclature,
     cientificName,
     image1,
     image2,
@@ -15,15 +14,13 @@ abstract class PlantsService {
     family,
     vegetalOrgan,
     terapeuticIndication,
-    contradictions,
-    precautions,
+    contradictionsandprecautions,
     medicInteration,
-    teaPrepare,
     farmaceuticForms,
     utilizationTime,
     superDose,
     toxicologic,
-    extractionMethod,
+    extractionMethodAndPrepare,
     finalObservation,
   );
   Future<void> plantDelete(id);

@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import '../../core/exceptions/repository_exception.dart';
@@ -86,7 +86,6 @@ abstract class HomeControllerBase with Store {
   Future<void> addPlant(
     id,
     popularName,
-    popularNomenclature,
     cientificName,
     image1,
     image2,
@@ -95,15 +94,13 @@ abstract class HomeControllerBase with Store {
     family,
     vegetalOrgan,
     terapeuticIndication,
-    contradictions,
-    precautions,
+    contradictionsandprecautions,
     medicInteration,
-    teaPrepare,
     farmaceuticForms,
     utilizationTime,
     superDose,
     toxicologic,
-    extractionMethod,
+    extractionMethodAndPrepare,
     finalObservation,
   ) async {
     _homeStatus = HomeStateStatus.loading;
@@ -111,7 +108,6 @@ abstract class HomeControllerBase with Store {
       await _plantsService.addOrEditPlants(
         id,
         popularName,
-        popularNomenclature,
         cientificName,
         image1,
         image2,
@@ -120,15 +116,13 @@ abstract class HomeControllerBase with Store {
         family,
         vegetalOrgan,
         terapeuticIndication,
-        contradictions,
-        precautions,
+        contradictionsandprecautions,
         medicInteration,
-        teaPrepare,
         farmaceuticForms,
         utilizationTime,
         superDose,
         toxicologic,
-        extractionMethod,
+        extractionMethodAndPrepare,
         finalObservation,
       );
       await findAllPlants();

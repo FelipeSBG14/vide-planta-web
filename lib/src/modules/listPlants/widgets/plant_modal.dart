@@ -22,22 +22,20 @@ class PlantModal extends StatefulWidget {
 final controller = Modular.get<HomeController>();
 
 final popularNameEC = TextEditingController();
-final popularNomenclatureEC = TextEditingController();
 final cientificNameEC = TextEditingController();
 final imageFont1EC = TextEditingController();
 final imageFont2EC = TextEditingController();
 final familyEC = TextEditingController();
 final vegetalOrganEC = TextEditingController();
 final terapeuticIndicationEC = TextEditingController();
-final contradictionsEC = TextEditingController();
-final precautionsEC = TextEditingController();
+final contradictionsandprecautionsEC = TextEditingController();
 final medicInterationsEC = TextEditingController();
-final teaPrepareEC = TextEditingController();
+
 final farmaceuticFormsEC = TextEditingController();
 final utilizationTimeEC = TextEditingController();
 final superDoseEC = TextEditingController();
 final toxicologicEC = TextEditingController();
-final extractionMethodEC = TextEditingController();
+final extractionMethodAndPrepareEC = TextEditingController();
 final finalObservationEC = TextEditingController();
 final _formKey = GlobalKey<FormState>();
 
@@ -59,15 +57,15 @@ class _PlantModalState extends State<PlantModal> with Loader, Messages {
       familyEC.text = widget.plant!.family;
       vegetalOrganEC.text = widget.plant!.vegetalOrgan;
       terapeuticIndicationEC.text = widget.plant!.terapeuticIndication;
-      contradictionsEC.text = widget.plant!.contradictions;
-      precautionsEC.text = widget.plant!.precautions;
-      teaPrepareEC.text = widget.plant!.teaPrepare;
+      contradictionsandprecautionsEC.text =
+          widget.plant!.contradictionsandprecautions;
+
       farmaceuticFormsEC.text = widget.plant!.farmaceuticForms;
       utilizationTimeEC.text = widget.plant!.utilizationTime;
       superDoseEC.text = widget.plant!.superDose;
-      extractionMethodEC.text = widget.plant!.extractionMethod;
+      extractionMethodAndPrepareEC.text =
+          widget.plant!.extractionMethodAndPrepare;
       finalObservationEC.text = widget.plant!.finalObservation;
-      popularNomenclatureEC.text = widget.plant!.popularNomenclature;
       medicInterationsEC.text = widget.plant!.medicInterations;
       toxicologicEC.text = widget.plant!.toxicologic;
     }
@@ -110,7 +108,6 @@ class _PlantModalState extends State<PlantModal> with Loader, Messages {
         await controller.addPlant(
           widget.plant?.id,
           popularNameEC.text,
-          popularNomenclatureEC.text,
           cientificNameEC.text,
           controller.imagePath1,
           controller.imagePath2,
@@ -119,15 +116,13 @@ class _PlantModalState extends State<PlantModal> with Loader, Messages {
           familyEC.text,
           vegetalOrganEC.text,
           terapeuticIndicationEC.text,
-          contradictionsEC.text,
-          precautionsEC.text,
+          contradictionsandprecautionsEC.text,
           medicInterationsEC.text,
-          teaPrepareEC.text,
           farmaceuticFormsEC.text,
           utilizationTimeEC.text,
           superDoseEC.text,
           toxicologicEC.text,
-          extractionMethodEC.text,
+          extractionMethodAndPrepareEC.text,
           finalObservationEC.text,
         );
         controller.clearPaths();
@@ -145,15 +140,13 @@ class _PlantModalState extends State<PlantModal> with Loader, Messages {
     familyEC.dispose();
     vegetalOrganEC.dispose();
     terapeuticIndicationEC.dispose();
-    contradictionsEC.dispose();
-    precautionsEC.dispose();
-    teaPrepareEC.dispose();
+    contradictionsandprecautionsEC.dispose();
+
     farmaceuticFormsEC.dispose();
     utilizationTimeEC.dispose();
     superDoseEC.dispose();
-    extractionMethodEC.dispose();
+    extractionMethodAndPrepareEC.dispose();
     finalObservationEC.dispose();
-    popularNomenclatureEC.dispose();
     medicInterationsEC.dispose();
     toxicologicEC.dispose();
     super.dispose();
@@ -200,22 +193,6 @@ class _PlantModalState extends State<PlantModal> with Loader, Messages {
                       ),
                       validator:
                           Validatorless.required('Nome Popular é obrigatório'),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    child: TextFormField(
-                      controller: popularNomenclatureEC,
-                      decoration: const InputDecoration(
-                        isDense: true,
-                        labelText: 'Nomenclaturas Populares',
-                      ),
-                      validator: Validatorless.required(
-                        'Informe Nomenclaturas Populares',
-                      ),
                     ),
                   ),
                   const SizedBox(
@@ -405,11 +382,11 @@ class _PlantModalState extends State<PlantModal> with Loader, Messages {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.6,
                     child: TextFormField(
-                      controller: contradictionsEC,
+                      controller: contradictionsandprecautionsEC,
                       decoration: const InputDecoration(
                         isDense: false,
                         label: Text(
-                          'Contradições',
+                          'Contradicações/Advertências',
                         ),
                         hintText: 'Descreva',
                         alignLabelWithHint: true,
@@ -419,28 +396,6 @@ class _PlantModalState extends State<PlantModal> with Loader, Messages {
                       keyboardType: TextInputType.multiline,
                       validator:
                           Validatorless.required('Coloque as contradições'),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    child: TextFormField(
-                      controller: precautionsEC,
-                      decoration: const InputDecoration(
-                        isDense: false,
-                        label: Text(
-                          'Precauções de Uso',
-                        ),
-                        hintText: 'Descreva',
-                        alignLabelWithHint: true,
-                      ),
-                      maxLines: 5,
-                      minLines: null,
-                      keyboardType: TextInputType.multiline,
-                      validator:
-                          Validatorless.required('Coloque as precauções'),
                     ),
                   ),
                   const SizedBox(
@@ -459,27 +414,6 @@ class _PlantModalState extends State<PlantModal> with Loader, Messages {
                       maxLines: 5,
                       minLines: null,
                       keyboardType: TextInputType.multiline,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    child: TextFormField(
-                      controller: teaPrepareEC,
-                      decoration: const InputDecoration(
-                        isDense: false,
-                        label: Text(
-                          'Preparo do Chá',
-                        ),
-                        hintText: 'Descreva',
-                        alignLabelWithHint: true,
-                      ),
-                      maxLines: 5,
-                      minLines: null,
-                      keyboardType: TextInputType.multiline,
-                      validator: Validatorless.required('Coloque o preparo'),
                     ),
                   ),
                   const SizedBox(
@@ -573,11 +507,11 @@ class _PlantModalState extends State<PlantModal> with Loader, Messages {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.6,
                     child: TextFormField(
-                      controller: extractionMethodEC,
+                      controller: extractionMethodAndPrepareEC,
                       decoration: const InputDecoration(
                         isDense: false,
                         label: Text(
-                          'Método de Extração Corretos',
+                          'Método de Extração/Preparo do Chá',
                         ),
                         hintText: 'Descreva',
                         alignLabelWithHint: true,

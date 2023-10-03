@@ -5,7 +5,6 @@ import 'dart:convert';
 class PlantsModel {
   String? id;
   String popularName;
-  String popularNomenclature;
   String cientificName;
   String image1;
   String image2;
@@ -14,20 +13,17 @@ class PlantsModel {
   String family;
   String vegetalOrgan;
   String terapeuticIndication;
-  String contradictions;
-  String precautions;
+  String contradictionsandprecautions;
   String medicInterations;
-  String teaPrepare;
   String farmaceuticForms;
   String utilizationTime;
   String superDose;
   String toxicologic;
-  String extractionMethod;
+  String extractionMethodAndPrepare;
   String finalObservation;
   PlantsModel({
     this.id,
     required this.popularName,
-    required this.popularNomenclature,
     required this.cientificName,
     required this.image1,
     required this.image2,
@@ -36,22 +32,19 @@ class PlantsModel {
     required this.family,
     required this.vegetalOrgan,
     required this.terapeuticIndication,
-    required this.contradictions,
-    required this.precautions,
+    required this.contradictionsandprecautions,
     required this.medicInterations,
-    required this.teaPrepare,
     required this.farmaceuticForms,
     required this.utilizationTime,
     required this.superDose,
     required this.toxicologic,
-    required this.extractionMethod,
+    required this.extractionMethodAndPrepare,
     required this.finalObservation,
   });
 
   PlantsModel copyWith({
     String? id,
     String? popularName,
-    String? popularNomenclature,
     String? cientificName,
     String? image1,
     String? image2,
@@ -60,21 +53,18 @@ class PlantsModel {
     String? family,
     String? vegetalOrgan,
     String? terapeuticIndication,
-    String? contradictions,
-    String? precautions,
+    String? contradictionsandprecautions,
     String? medicInterations,
-    String? teaPrepare,
     String? farmaceuticForms,
     String? utilizationTime,
     String? superDose,
     String? toxicologic,
-    String? extractionMethod,
+    String? extractionMethodAndPrepare,
     String? finalObservation,
   }) {
     return PlantsModel(
       id: id ?? this.id,
       popularName: popularName ?? this.popularName,
-      popularNomenclature: popularNomenclature ?? this.popularNomenclature,
       cientificName: cientificName ?? this.cientificName,
       image1: image1 ?? this.image1,
       image2: image2 ?? this.image2,
@@ -83,15 +73,15 @@ class PlantsModel {
       family: family ?? this.family,
       vegetalOrgan: vegetalOrgan ?? this.vegetalOrgan,
       terapeuticIndication: terapeuticIndication ?? this.terapeuticIndication,
-      contradictions: contradictions ?? this.contradictions,
-      precautions: precautions ?? this.precautions,
+      contradictionsandprecautions:
+          contradictionsandprecautions ?? this.contradictionsandprecautions,
       medicInterations: medicInterations ?? this.medicInterations,
-      teaPrepare: teaPrepare ?? this.teaPrepare,
       farmaceuticForms: farmaceuticForms ?? this.farmaceuticForms,
       utilizationTime: utilizationTime ?? this.utilizationTime,
       superDose: superDose ?? this.superDose,
       toxicologic: toxicologic ?? this.toxicologic,
-      extractionMethod: extractionMethod ?? this.extractionMethod,
+      extractionMethodAndPrepare:
+          extractionMethodAndPrepare ?? this.extractionMethodAndPrepare,
       finalObservation: finalObservation ?? this.finalObservation,
     );
   }
@@ -100,7 +90,6 @@ class PlantsModel {
     return <String, dynamic>{
       'id': id,
       'popularName': popularName,
-      'popularNomenclature': popularNomenclature,
       'cientificName': cientificName,
       'image1': image1,
       'image2': image2,
@@ -109,15 +98,13 @@ class PlantsModel {
       'family': family,
       'vegetalOrgan': vegetalOrgan,
       'terapeuticIndication': terapeuticIndication,
-      'contradictions': contradictions,
-      'precautions': precautions,
+      'contradictionsandprecautions': contradictionsandprecautions,
       'medicInterations': medicInterations,
-      'teaPrepare': teaPrepare,
       'farmaceuticForms': farmaceuticForms,
       'utilizationTime': utilizationTime,
       'superDose': superDose,
       'toxicologic': toxicologic,
-      'extractionMethod': extractionMethod,
+      'extractionMethodAndPrepare': extractionMethodAndPrepare,
       'finalObservation': finalObservation,
     };
   }
@@ -126,7 +113,6 @@ class PlantsModel {
     return PlantsModel(
       id: map['id'] != null ? map['id'] as String : null,
       popularName: map['popularName'] as String,
-      popularNomenclature: map['popularNomenclature'] as String,
       cientificName: map['cientificName'] as String,
       image1: map['image1'] as String,
       image2: map['image2'] as String,
@@ -135,15 +121,14 @@ class PlantsModel {
       family: map['family'] as String,
       vegetalOrgan: map['vegetalOrgan'] as String,
       terapeuticIndication: map['terapeuticIndication'] as String,
-      contradictions: map['contradictions'] as String,
-      precautions: map['precautions'] as String,
+      contradictionsandprecautions:
+          map['contradictionsandprecautions'] as String,
       medicInterations: map['medicInterations'] as String,
-      teaPrepare: map['teaPrepare'] as String,
       farmaceuticForms: map['farmaceuticForms'] as String,
       utilizationTime: map['utilizationTime'] as String,
       superDose: map['superDose'] as String,
       toxicologic: map['toxicologic'] as String,
-      extractionMethod: map['extractionMethod'] as String,
+      extractionMethodAndPrepare: map['extractionMethodAndPrepare'] as String,
       finalObservation: map['finalObservation'] as String,
     );
   }
@@ -155,6 +140,6 @@ class PlantsModel {
 
   @override
   String toString() {
-    return 'PlantsModel(id: $id, popularName: $popularName, popularNomenclature: $popularNomenclature, cientificName: $cientificName, image1: $image1, image2: $image2, imageFont1: $imageFont1, imageFont2: $imageFont2, family: $family, vegetalOrgan: $vegetalOrgan, terapeuticIndication: $terapeuticIndication, contradictions: $contradictions, precautions: $precautions, medicInterations: $medicInterations, teaPrepare: $teaPrepare, farmaceuticForms: $farmaceuticForms, utilizationTime: $utilizationTime, superDose: $superDose, toxicologic: $toxicologic, extractionMethod: $extractionMethod, finalObservation: $finalObservation)';
+    return 'PlantsModel(id: $id, popularName: $popularName, cientificName: $cientificName, image1: $image1, image2: $image2, imageFont1: $imageFont1, imageFont2: $imageFont2, family: $family, vegetalOrgan: $vegetalOrgan, terapeuticIndication: $terapeuticIndication, contradictionsandprecautions: $contradictionsandprecautions, medicInterations: $medicInterations, farmaceuticForms: $farmaceuticForms, utilizationTime: $utilizationTime, superDose: $superDose, toxicologic: $toxicologic, extractionMethodAndPrepare: $extractionMethodAndPrepare, finalObservation: $finalObservation)';
   }
 }
