@@ -13,6 +13,7 @@ import 'plants_repository.dart';
 
 class PlantsRepositoryImpl implements PlantsRepository {
   final _dio = Dio();
+
   String baseUrl = Env.instance.get('backend_base_url');
   @override
   Future<List<PlantsModel>> getPlants(String? name) async {

@@ -121,7 +121,7 @@ class PlantItem extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           );
         },

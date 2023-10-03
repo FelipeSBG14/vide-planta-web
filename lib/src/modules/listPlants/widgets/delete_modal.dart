@@ -72,7 +72,7 @@ class _DeleteModalState extends State<DeleteModal> {
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }

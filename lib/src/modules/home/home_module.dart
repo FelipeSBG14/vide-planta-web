@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../services/plants/plants_service.dart';
 import '../../services/plants/plants_service_impl.dart';
+import '../core/core_module.dart';
 import 'home_controller.dart';
 import 'home_page.dart';
 
@@ -29,4 +30,7 @@ class HomeModule extends Module {
   void routes(RouteManager r) {
     r.child('/', child: (context) => const HomePage());
   }
+
+  @override
+  List<Module> get imports => [CoreModule()];
 }

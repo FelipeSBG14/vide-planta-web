@@ -84,7 +84,6 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
           hideLoader();
           break;
         case HomeStateStatus.addOrEdit:
-          // TODO: Handle this case.
           break;
       }
     });
@@ -164,7 +163,7 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
                 color: Colors.grey, //New
                 blurRadius: 25.0,
                 offset: Offset(0, 1),
-              )
+              ),
             ],
           ),
           height: MediaQuery.of(context).size.height * 0.9,
@@ -315,36 +314,37 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
                           Container(
                             margin: const EdgeInsets.all(10),
                             child: TextButton(
-                                onPressed: () {
-                                  UploadHtmlHelper().startUpload(
-                                    controller.uploadImagePlant2,
+                              onPressed: () {
+                                UploadHtmlHelper().startUpload(
+                                  controller.uploadImagePlant2,
+                                );
+                              },
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.white.withOpacity(
+                                  0.9,
+                                ),
+                              ),
+                              child: Observer(
+                                builder: (_) {
+                                  return Visibility(
+                                    visible: controller.isLoading == true
+                                        ? false
+                                        : true,
+                                    replacement:
+                                        const CircularProgressIndicator(
+                                      color: Colors.green,
+                                    ),
+                                    child: Observer(
+                                      builder: (_) {
+                                        return Text(
+                                          '${controller.imagePath2 == null ? 'Adicionar' : 'Alterar'} Foto 2',
+                                        );
+                                      },
+                                    ),
                                   );
                                 },
-                                style: TextButton.styleFrom(
-                                  backgroundColor: Colors.white.withOpacity(
-                                    0.9,
-                                  ),
-                                ),
-                                child: Observer(
-                                  builder: (_) {
-                                    return Visibility(
-                                      visible: controller.isLoading == true
-                                          ? false
-                                          : true,
-                                      replacement:
-                                          const CircularProgressIndicator(
-                                        color: Colors.green,
-                                      ),
-                                      child: Observer(
-                                        builder: (_) {
-                                          return Text(
-                                            '${controller.imagePath2 == null ? 'Adicionar' : 'Alterar'} Foto 2',
-                                          );
-                                        },
-                                      ),
-                                    );
-                                  },
-                                )),
+                              ),
+                            ),
                           ),
                         ],
                       ),

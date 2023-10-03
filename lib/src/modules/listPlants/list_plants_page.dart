@@ -44,7 +44,6 @@ class _ListPlantsPageState extends State<ListPlantsPage> with Loader, Messages {
           break;
         case HomeStateStatus.addOrEdit:
           hideLoader();
-          // TODO: Handle this case.
           break;
       }
     });
@@ -55,126 +54,131 @@ class _ListPlantsPageState extends State<ListPlantsPage> with Loader, Messages {
   Widget build(BuildContext context) {
     return Material(
       color: ColorsApp.i.primary,
-      child: LayoutBuilder(builder: (
-        context,
-        constrains,
-      ) {
-        return Center(
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(20),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey, //New
-                  blurRadius: 25.0,
-                  offset: Offset(0, 1),
-                )
-              ],
-            ),
-            height: MediaQuery.of(context).size.height * 0.9,
-            width: MediaQuery.of(context).size.width * 0.8,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 15,
+      child: LayoutBuilder(
+        builder: (
+          context,
+          constrains,
+        ) {
+          return Center(
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20),
                 ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      SchedulerBinding.instance.addPostFrameCallback((_) {
-                        Modular.to.pushNamed('/');
-                      });
-                    },
-                    child: const Text(
-                      'Adicionar Planta',
-                      style: TextStyle(
-                        color: Colors.black,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey, //New
+                    blurRadius: 25.0,
+                    offset: Offset(0, 1),
+                  ),
+                ],
+              ),
+              height: MediaQuery.of(context).size.height * 0.9,
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        SchedulerBinding.instance.addPostFrameCallback((_) {
+                          Modular.to.pushNamed('/');
+                        });
+                      },
+                      child: const Text(
+                        'Adicionar Planta',
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Text(
-                    'LISTA DE PLANTAS',
-                    style: context.textStyles.textRegular,
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Text(
+                      'LISTA DE PLANTAS',
+                      style: context.textStyles.textRegular,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: constrains.maxWidth * .15,
-                  child: TextFormField(
-                    onChanged: (value) {
-                      debouncer.call(
-                        () {
-                          controller.filterByName(value);
-                        },
+                  SizedBox(
+                    width: constrains.maxWidth * .15,
+                    child: TextFormField(
+                      onChanged: (value) {
+                        debouncer.call(
+                          () {
+                            controller.filterByName(value);
+                          },
+                        );
+                      },
+                      decoration: InputDecoration(
+                        isDense: true,
+                        contentPadding: EdgeInsets.zero,
+                        prefixIcon: Icon(
+                          Icons.search,
+                          size: constrains.maxWidth * 0.02,
+                        ),
+                        label: Text(
+                          'Buscar por nome popular',
+                          style: context.textStyles.textRegular.copyWith(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Observer(
+                    builder: (_) {
+                      return Visibility(
+                        visible:
+                            controller.homeStatus == HomeStateStatus.loading
+                                ? false
+                                : true,
+                        replacement: const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        child: Expanded(
+                          child: Observer(
+                            builder: (_) {
+                              return controller.plantsSearch!.isEmpty
+                                  ? const Text('Nenhuma planta encontrada')
+                                  : GridView.builder(
+                                      itemCount:
+                                          controller.plantsSearch?.length,
+                                      gridDelegate:
+                                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                                        mainAxisExtent: 280,
+                                        mainAxisSpacing: 20,
+                                        maxCrossAxisExtent: 280,
+                                        crossAxisSpacing: 10,
+                                      ),
+                                      itemBuilder: (context, index) {
+                                        return PlantItem(
+                                          plant:
+                                              controller.plantsSearch![index],
+                                        );
+                                      },
+                                    );
+                            },
+                          ),
+                        ),
                       );
                     },
-                    decoration: InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.zero,
-                      prefixIcon: Icon(
-                        Icons.search,
-                        size: constrains.maxWidth * 0.02,
-                      ),
-                      label: Text(
-                        'Buscar por nome popular',
-                        style: context.textStyles.textRegular.copyWith(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Observer(
-                  builder: (_) {
-                    return Visibility(
-                      visible: controller.homeStatus == HomeStateStatus.loading
-                          ? false
-                          : true,
-                      replacement: const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                      child: Expanded(
-                        child: Observer(
-                          builder: (_) {
-                            return controller.plantsSearch!.isEmpty
-                                ? Text('Nenhuma planta encontrada')
-                                : GridView.builder(
-                                    itemCount: controller.plantsSearch?.length,
-                                    gridDelegate:
-                                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                                      mainAxisExtent: 280,
-                                      mainAxisSpacing: 20,
-                                      maxCrossAxisExtent: 280,
-                                      crossAxisSpacing: 10,
-                                    ),
-                                    itemBuilder: (context, index) {
-                                      return PlantItem(
-                                        plant: controller.plantsSearch![index],
-                                      );
-                                    },
-                                  );
-                          },
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        );
-      }),
+          );
+        },
+      ),
     );
   }
 }

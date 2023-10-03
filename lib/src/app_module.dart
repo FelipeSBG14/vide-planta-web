@@ -22,7 +22,7 @@ class AppModule extends Module {
   //     ];
 
   @override
-  void routes(r) {
+  void routes(RouteManager r) {
     r.module('/', module: HomeModule());
     r.module('/listPlants/', module: ListPlantsModule());
   }
