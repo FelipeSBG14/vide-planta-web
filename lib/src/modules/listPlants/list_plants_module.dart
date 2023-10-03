@@ -9,7 +9,7 @@ class ListPlantsModule extends Module {
   @override
   void binds(Injector i) {
     i.addLazySingleton<PlantsService>(PlantsServiceImpl.new);
-    i.addLazySingleton(HomeController.new);
+    i.addLazySingleton<HomeController>(HomeController.new);
   }
 
   // @override
@@ -31,7 +31,7 @@ class ListPlantsModule extends Module {
   //     ];
 
   @override
-  void routes(r) {
+  void routes(RouteManager r) {
     r.child('/', child: (context) => const ListPlantsPage());
   }
 
