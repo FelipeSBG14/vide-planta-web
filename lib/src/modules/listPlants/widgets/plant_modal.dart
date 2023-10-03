@@ -95,7 +95,6 @@ class _PlantModalState extends State<PlantModal> with Loader, Messages {
 
           break;
         case HomeStateStatus.addOrEdit:
-          // TODO: Handle this case.
           break;
       }
     });

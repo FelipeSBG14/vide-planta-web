@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
-import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import '../../core/exceptions/repository_exception.dart';
