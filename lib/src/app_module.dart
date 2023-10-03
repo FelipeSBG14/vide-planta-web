@@ -9,15 +9,21 @@ class AppModule extends Module {
         CoreModule(),
       ];
 
+  // @override
+  // List<ModularRoute> get routes => [
+  //       ModuleRoute(
+  //         '/',
+  //         module: HomeModule(),
+  //       ),
+  //       ModuleRoute(
+  //         '/listPlants/',
+  //         module: ListPlantsModule(),
+  //       ),
+  //     ];
+
   @override
-  List<ModularRoute> get routes => [
-        ModuleRoute(
-          '/',
-          module: HomeModule(),
-        ),
-        ModuleRoute(
-          '/listPlants/',
-          module: ListPlantsModule(),
-        ),
-      ];
+  void routes(r) {
+    r.module('/', module: HomeModule());
+    r.module('/listPlants/', module: ListPlantsModule());
+  }
 }

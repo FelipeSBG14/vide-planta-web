@@ -8,8 +8,6 @@ import '../../core/ui/helpers/loader.dart';
 import '../../core/ui/helpers/messages.dart';
 import '../../core/ui/helpers/upload_html_helper.dart';
 import '../../core/ui/styles/colors_app.dart';
-import '../../models/plants_model.dart';
-import '../listPlants/list_plants_page.dart';
 import 'home_controller.dart';
 
 class HomePage extends StatefulWidget {
