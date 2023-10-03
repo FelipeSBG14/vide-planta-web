@@ -13,7 +13,7 @@ class CoreModule extends Module {
   //     ];
 
   @override
-  void exportedBinds(i) {
+  void exportedBinds(Injector i) {
     i.addLazySingleton<PlantsRepository>(PlantsRepositoryImpl.new);
   }
 }

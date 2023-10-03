@@ -16,7 +16,7 @@ class HomeModule extends Module {
   //     ];
 
   @override
-  void exportedBinds(i) {
+  void binds(Injector i) {
     i.addLazySingleton<PlantsService>(PlantsServiceImpl.new);
     i.addLazySingleton(HomeController.new);
   }

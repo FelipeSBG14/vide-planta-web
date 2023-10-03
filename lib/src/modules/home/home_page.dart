@@ -183,7 +183,7 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
                           Modular.to.pushNamed('/listPlants/');
                         });
                       },
-                      child: Text(
+                      child: const Text(
                         'Ver Plantas',
                         style: TextStyle(
                           color: Colors.brown,
@@ -292,7 +292,7 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
                               return Visibility(
                                 visible:
                                     controller.isLoading == true ? false : true,
-                                replacement: CircularProgressIndicator(
+                                replacement: const CircularProgressIndicator(
                                   color: Colors.green,
                                 ),
                                 child: Observer(
@@ -331,7 +331,8 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
                                       visible: controller.isLoading == true
                                           ? false
                                           : true,
-                                      replacement: CircularProgressIndicator(
+                                      replacement:
+                                          const CircularProgressIndicator(
                                         color: Colors.green,
                                       ),
                                       child: Observer(
